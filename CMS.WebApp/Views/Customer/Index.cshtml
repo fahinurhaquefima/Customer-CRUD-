@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CMS.WebApp.Models.Customer>
+@{
+    int idNo = 1;
+}
+<div>
+    <h2 class="text-capitalize text-center mt-3 text-info">Customer's Data Table</h2>
+</div>
+<div class="container">
+    <div class="row">
+        <table class=" table table-bordered table-responsive  text-center mt-5 border-1 border-dark ">
+            <thead >
+                <tr>
+                    <th>IdNo</th>
+                    <th>@Html.DisplayNameFor(x => x.Name)</th>
+                    <th>@Html.DisplayNameFor(x => x.Email)</th>
+                    <th>@Html.DisplayNameFor(x => x.Phone)</th>
+                    <th>@Html.DisplayNameFor(x => x.Address)</th>
+                    <th>Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Address</td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller=" Customer" asp-action=" CreateOrEdit" asp-route-id="@item.Id">Edit</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Customer " asp-action=" CreateOrEdit" asp-route-id="@item.Id">Details</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Customer " asp-action=" CreateOrEdit" asp-route-id="@item.Id" onclick="return confirm('Are You Sure! Delete This Data?')">Delete</a>
+                        </td>
+                    </tr>
+                    idNo++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <a asp-action="CreateOrEdit" class="btn btn-warning text-white text-uppercase mt-5 text-center">Add New</a>
+</div>
